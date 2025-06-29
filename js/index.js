@@ -1,4 +1,4 @@
-// ToDo class replacing Note
+// ToDo class
 class Todo {
   constructor(
     id,
