@@ -4,7 +4,6 @@
   width: clamp(288px, 80vw, 388px);
   height: clamp(288px, 80vh, 428px);
   background-color: var(--card-background-color);
-  /*font-family: "Permanent Marker", cursive;*/
   font-family: "Patrick Hand", cursive;
   font-size: clamp(22px, 2.5vw, 24px);
   border-radius: 8px;
@@ -12,7 +11,7 @@
   overflow: hidden;
   margin: 20px;
   display: flex;
-  transform: rotate(-3deg);
+  transform: rotate(-2deg);
 }
 
 .card-body {
