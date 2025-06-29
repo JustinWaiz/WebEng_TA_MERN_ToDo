@@ -12,3 +12,11 @@
 .dark-theme .btn-close {
   filter: invert(1);
 }
+
+#todo-icon-preview {
+  transition: transform 0.2s;
+}
+
+#todo-icon-preview:hover {
+  transform: scale(2);
+}

@@ -1,12 +1,21 @@
 // ToDo class replacing Note
 class Todo {
-  constructor(id, title, description, category, dueDate, completed = false) {
+  constructor(
+    id,
+    title,
+    description,
+    category,
+    dueDate,
+    completed = false,
+    icon = null
+  ) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.category = category;
     this.dueDate = dueDate;
     this.completed = completed;
+    this.icon = icon;
   }
 
   static fromJSON(json) {
@@ -16,7 +25,8 @@ class Todo {
       json.description,
       json.category,
       json.dueDate,
-      json.completed
+      json.completed,
+      json.icon
     );
   }
 
@@ -28,6 +38,7 @@ class Todo {
       category: this.category,
       dueDate: this.dueDate,
       completed: this.completed,
+      icon: this.icon,
     };
   }
 }
@@ -106,6 +117,8 @@ class ModalService {
     this.categoryInput = this.modalElement.querySelector("#todo-category");
     this.dueDateInput = this.modalElement.querySelector("#todo-due-date");
     this.completedInput = this.modalElement.querySelector("#todo-completed");
+    this.iconInput = this.modalElement.querySelector("#todo-icon");
+    this.iconPreview = this.modalElement.querySelector("#todo-icon-preview");
     this.saveBtn = this.modalElement.querySelector("#save-btn");
     this.floatingActionButton = document.querySelector(
       ".floating-action-button"
@@ -130,6 +143,19 @@ class ModalService {
       event.preventDefault();
       this.openModal();
     });
+
+    this.iconInput.addEventListener("change", () => {
+      const file = this.iconInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.item.icon = reader.result;
+          this.iconPreview.src = reader.result;
+          this.iconPreview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
   }
 
   _handleSave() {
@@ -140,6 +166,7 @@ class ModalService {
       category: this.categoryInput.value,
       dueDate: this.dueDateInput.value,
       completed: this.completedInput.checked,
+      icon: this.item.icon || null,
     };
 
     if (!todo.title) return;
@@ -155,11 +182,20 @@ class ModalService {
     this.categoryInput.value = this.item.category || "work";
     this.dueDateInput.value = this.item.dueDate || "";
     this.completedInput.checked = this.item.completed || false;
+    this.iconInput.value = "";
+    if (this.item.icon) {
+      this.iconPreview.src = this.item.icon;
+      this.iconPreview.style.display = "block";
+    } else {
+      this.iconPreview.style.display = "none";
+    }
     this.modal.show();
   }
 
   closeModal() {
     this.modal.hide();
+    this.iconPreview.style.display = "none";
+    this.item = {};
   }
 }
 
@@ -182,6 +218,11 @@ class TodoRenderService {
       <div class="card-body">
         <div class="card-header">
           <span class="drag-handle">☰</span>
+          ${
+            todo.icon
+              ? `<img src="${todo.icon}" alt="Task icon" class="todo-icon" />`
+              : ""
+          }
           <strong class="todo-title">${todo.title}</strong><br />
           <span class="todo-due-date">Due: ${todo.dueDate || "-"}</span>
         </div>

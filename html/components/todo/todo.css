@@ -50,6 +50,18 @@
   margin-right: 10px;
   color: #888;
 }
+.todo-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  transition: transform 0.2s;
+}
+
+.todo-icon:hover {
+  transform: scale(5);
+  position: relative;
+  z-index: 10;
+}
 .card-actions {
   height: 70px;
   display: flex;
