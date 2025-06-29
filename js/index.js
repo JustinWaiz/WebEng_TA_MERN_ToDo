@@ -143,6 +143,9 @@ class ModalService {
       event.preventDefault();
       this.openModal();
     });
+    this.modalElement.addEventListener("hidden.bs.modal", () => {
+      this.item = {};
+    });
 
     this.iconInput.addEventListener("change", () => {
       const file = this.iconInput.files[0];
