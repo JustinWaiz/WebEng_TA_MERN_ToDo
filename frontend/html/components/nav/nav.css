@@ -14,6 +14,14 @@
   display: flex;
   align-items: center;
 }
+.logout-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
 .github-logo {
   height: 32px;
 }

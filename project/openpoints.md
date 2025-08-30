@@ -1,11 +1,18 @@
 Upgrade to MERN stack:
 
-- persistant storage with MongoDB (Atlas) cluster -> mongoose
-- Node.js Express backend server:
+- persistant storage with MongoDB (Atlas) cluster -> mongoose (done)
+- Node.js Express backend server (done):
   - API routes for all CRUD operations
   - API routes for register and login (JWT & bcrypt)
   - ToDo's belong to users and can only be accessed and modified by their creators
 - React / Vite frontend (done)
+- Frontend:
+  - reorder CSS files
+  - beautify Auth page
+  - Logout button
+  - Drag & drop to reorder tasks no longer working
+  - Use of other icon for toggle button
+  - complete tasks without opening modal
 
 Functions / Topics:
 

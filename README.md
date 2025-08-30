@@ -1,7 +1,6 @@
-# JavaScript To-Do App 🗒️
+# JavaScript To-Do App
 
-A simple and responsive to-do list application built with plain HTML, CSS and JavaScript. Tasks are stored in the browser so you can manage them without any backend.
-Check out the **[live demo](https://js-todo-app-ry7r.onrender.com/)** 🚀
+A full-stack to-do list application with a React frontend and an Express/MongoDB backend. Check out the **[live demo](https://js-todo-app-ry7r.onrender.com/)** 🚀
 
 ## Features ✨
 
@@ -12,23 +11,24 @@ Check out the **[live demo](https://js-todo-app-ry7r.onrender.com/)** 🚀
 - ↕️ Drag & drop to reorder tasks
 - 🌗 Toggle between light and dark themes
 - 📱 Collapsible sidebar for smaller screens
-- 💾 Data persisted using `localStorage`
+- 💾 Data persisted using `MongoDB`
+
+## Project Structure
+
+- `frontend/` – React client built with Vite
+- `backend/` – Express server using Mongoose for MongoDB
 
 ## Getting Started 🚀
 
-1. Clone or download this repository.
-2. Serve the project with any static file server or simply open `index.html` in your browser. When using modern browsers it is recommended to serve the files via HTTP (e.g. with `npx serve`) due to the use of ES modules.
+1. Install dependencies for each part:
+   - `cd frontend && npm install`
+   - `cd backend && npm install`
+2. Start the backend server:
+   - `npm start` (from the `backend` folder)
+3. Start the frontend dev server:
+   - `npm run dev` (from the `frontend` folder)
 
-Once loaded, you can start adding tasks right away.
-
-## Repository Layout
-
-- `index.html` – main HTML file
-- `js/index.js` – application logic
-- `styles.css` and `variables.css` – global styling and theme variables
-- `html/components/` – reusable UI components
-- `project/openpoints.md` – notes on planned improvements
-- `project/issues.md` – known issues
+The frontend expects the API to be available on `http://localhost:4000` by default.
 
 ## License
 

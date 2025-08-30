@@ -45,7 +45,7 @@ export default function TodoModal({ show, onClose, onSave, todo }) {
     e.preventDefault()
     if (!title.trim()) return
     onSave({
-      id: todo?.id || Date.now(),
+      ...(todo?.id ? { id: todo.id } : {}),
       title,
       description,
       category,
