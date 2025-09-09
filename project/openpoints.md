@@ -7,11 +7,11 @@ Upgrade to MERN stack:
   - ToDo's belong to users and can only be accessed and modified by their creators
 - React / Vite frontend (done)
 - Frontend:
-  - reorder CSS files
-  - beautify Auth page
+  - reorder CSS files (done)
+  - beautify Auth page (done)
   - Logout button (done)
   - Drag & drop to reorder tasks no longer working
-  - Use of more clearly icon for toggle button
+  - Use of more clearly icon for toggle button (done)
   - complete tasks without opening modal
 
 Functions / Topics:
