@@ -1,4 +1,4 @@
-import ActionButton from "./ActionButton";
+import ActionButton from "../action-button/ActionButton";
 
 export default function Aside({
   filter,

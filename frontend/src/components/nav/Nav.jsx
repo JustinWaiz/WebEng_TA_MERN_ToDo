@@ -1,5 +1,5 @@
-import ThemeButton from "./ThemeButton";
-import { useAuth } from "../context/AuthContext.jsx";
+import ThemeButton from "../theme-button/ThemeButton";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 export default function Nav({ onToggleTheme }) {
   const { logout } = useAuth();

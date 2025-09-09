@@ -1,120 +1,126 @@
-import { useEffect, useState } from 'react'
-import TodoCard from './components/TodoCard'
-import TodoModal from './components/TodoModal'
-import ToggleButton from './components/ToggleButton'
-import Nav from './components/Nav'
-import Aside from './components/Aside'
-import Footer from './components/Footer'
-import ActionButton from './components/ActionButton'
-import Auth from './components/Auth'
-import { useAuth } from './context/AuthContext.jsx'
-import * as api from './services/api.js'
+import { useEffect, useState } from "react";
+import TodoCard from "./components//todo/TodoCard";
+import TodoModal from "./components/modal/TodoModal";
+import ToggleButton from "./components/toggle-button/ToggleButton";
+import Nav from "./components/nav/Nav";
+import Aside from "./components//aside/Aside";
+import Footer from "./components/footer/Footer";
+import ActionButton from "./components/action-button/ActionButton";
+import Auth from "./components/auth/Auth";
+import { useAuth } from "./context/AuthContext.jsx";
+import * as api from "./services/api.js";
 
 export default function App() {
-  const { token } = useAuth()
-  const [todos, setTodos] = useState([])
-  const [filter, setFilter] = useState('all')
-  const [category, setCategory] = useState('all')
-  const [search, setSearch] = useState('')
-  const [showModal, setShowModal] = useState(false)
-  const [editing, setEditing] = useState(null)
-  const [draggedId, setDraggedId] = useState(null)
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
+  const { token } = useAuth();
+  const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [category, setCategory] = useState("all");
+  const [search, setSearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [editing, setEditing] = useState(null);
+  const [draggedId, setDraggedId] = useState(null);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
 
   useEffect(() => {
-    if (token) fetchTodos()
-  }, [token])
+    if (token) fetchTodos();
+  }, [token]);
 
   useEffect(() => {
-    document.body.classList.toggle('dark-theme', theme === 'dark')
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.body.classList.toggle("dark-theme", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const fetchTodos = async () => {
     try {
-      const data = await api.getTodos(token)
-      setTodos(data.map((t) => ({ ...t, id: t._id })))
+      const data = await api.getTodos(token);
+      setTodos(data.map((t) => ({ ...t, id: t._id })));
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   const filteredTodos = todos.filter((todo) => {
-    if (filter === 'active' && todo.completed) return false
-    if (filter === 'completed' && !todo.completed) return false
-    if (category !== 'all' && todo.category !== category) return false
+    if (filter === "active" && todo.completed) return false;
+    if (filter === "completed" && !todo.completed) return false;
+    if (category !== "all" && todo.category !== category) return false;
     if (search.trim()) {
-      const keyword = search.toLowerCase()
+      const keyword = search.toLowerCase();
       if (
         !todo.title.toLowerCase().includes(keyword) &&
         !todo.description.toLowerCase().includes(keyword)
       )
-        return false
+        return false;
     }
-    return true
-  })
+    return true;
+  });
 
   const handleSave = async (todo) => {
     try {
       if (editing) {
-        const updated = await api.updateTodo(token, todo)
-        setTodos((prev) => prev.map((t) => (t.id === todo.id ? { ...updated, id: updated._id } : t)))
+        const updated = await api.updateTodo(token, todo);
+        setTodos((prev) =>
+          prev.map((t) =>
+            t.id === todo.id ? { ...updated, id: updated._id } : t
+          )
+        );
       } else {
-        const created = await api.createTodo(token, todo)
-        setTodos((prev) => [...prev, { ...created, id: created._id }])
+        const created = await api.createTodo(token, todo);
+        setTodos((prev) => [...prev, { ...created, id: created._id }]);
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-    setShowModal(false)
-    setEditing(null)
-  }
+    setShowModal(false);
+    setEditing(null);
+  };
 
   const handleEdit = (todo) => {
-    setEditing(todo)
-    setShowModal(true)
-  }
+    setEditing(todo);
+    setShowModal(true);
+  };
 
   const handleDelete = async (todo) => {
     try {
-      await api.deleteTodo(token, todo.id)
-      setTodos((prev) => prev.filter((t) => t.id !== todo.id))
+      await api.deleteTodo(token, todo.id);
+      setTodos((prev) => prev.filter((t) => t.id !== todo.id));
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   const handleDragStart = (e, id) => {
-    setDraggedId(id)
-  }
-  const handleDragOver = (e) => e.preventDefault()
+    setDraggedId(id);
+  };
+  const handleDragOver = (e) => e.preventDefault();
   const handleDrop = (e, targetId) => {
-    e.preventDefault()
-    if (draggedId === null || draggedId === targetId) return
-    const newTodos = [...todos]
-    const fromIndex = newTodos.findIndex((t) => t.id === draggedId)
-    const toIndex = newTodos.findIndex((t) => t.id === targetId)
-    const [moved] = newTodos.splice(fromIndex, 1)
-    newTodos.splice(toIndex, 0, moved)
-    setTodos(newTodos)
-    setDraggedId(null)
-  }
+    e.preventDefault();
+    if (draggedId === null || draggedId === targetId) return;
+    const newTodos = [...todos];
+    const fromIndex = newTodos.findIndex((t) => t.id === draggedId);
+    const toIndex = newTodos.findIndex((t) => t.id === targetId);
+    const [moved] = newTodos.splice(fromIndex, 1);
+    newTodos.splice(toIndex, 0, moved);
+    setTodos(newTodos);
+    setDraggedId(null);
+  };
 
   const toggleAside = () => {
-    document.body.classList.toggle('aside-collapsed')
-  }
+    document.body.classList.toggle("aside-collapsed");
+  };
 
   const openModal = () => {
-    setEditing(null)
-    setShowModal(true)
-  }
+    setEditing(null);
+    setShowModal(true);
+  };
 
   const toggleTheme = () => {
-    setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
-  }
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
+  };
 
   if (!token) {
-    return <Auth />
+    return <Auth />;
   }
 
   return (
@@ -175,12 +181,12 @@ export default function App() {
       <TodoModal
         show={showModal}
         onClose={() => {
-          setShowModal(false)
-          setEditing(null)
+          setShowModal(false);
+          setEditing(null);
         }}
         onSave={handleSave}
         todo={editing}
       />
     </>
-  )
+  );
 }

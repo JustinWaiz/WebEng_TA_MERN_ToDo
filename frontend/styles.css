@@ -1,15 +1,15 @@
 @import url("variables.css");
-@import url("./html/components/action-button/action-button.css");
-@import url("./html/components/filter-buttons/filter-buttons.css");
-@import url("./html/components/toggle-button/toggle-button.css");
-@import url("./html/components/theme-button/theme-buttons.css");
-@import url("./html/components/footer/footer.css");
-@import url("./html/components/nav/nav.css");
-@import url("./html/components/aside/aside.css");
-@import url("./html/components/body/body.css");
-@import url("./html/components/todo/todo.css");
-@import url("./html/components/modal/modal.css");
-@import url("./html/components/auth/auth.css");
+@import url("./src/components/action-button/action-button.css");
+@import url("./src/components/filter-buttons/filter-buttons.css");
+@import url("./src/components/toggle-button/toggle-button.css");
+@import url("./src/components/theme-button/theme-buttons.css");
+@import url("./src/components/footer/footer.css");
+@import url("./src/components/nav/nav.css");
+@import url("./src/components/aside/aside.css");
+@import url("./src/components/body/body.css");
+@import url("./src/components/todo/todo.css");
+@import url("./src/components/modal/modal.css");
+@import url("./src/components/auth/auth.css");
 
 * {
   margin: 0;
