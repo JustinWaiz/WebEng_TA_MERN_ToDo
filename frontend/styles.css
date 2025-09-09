@@ -9,6 +9,7 @@
 @import url("./html/components/body/body.css");
 @import url("./html/components/todo/todo.css");
 @import url("./html/components/modal/modal.css");
+@import url("./html/components/auth/auth.css");
 
 * {
   margin: 0;

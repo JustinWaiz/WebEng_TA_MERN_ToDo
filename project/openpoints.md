@@ -11,7 +11,7 @@ Upgrade to MERN stack:
   - beautify Auth page
   - Logout button (done)
   - Drag & drop to reorder tasks no longer working
-  - Use of other icon for toggle button
+  - Use of more clearly icon for toggle button
   - complete tasks without opening modal
 
 Functions / Topics:
