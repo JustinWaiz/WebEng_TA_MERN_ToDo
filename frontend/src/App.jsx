@@ -94,7 +94,7 @@ export default function App() {
     setDraggedId(id);
   };
   const handleDragOver = (e) => e.preventDefault();
-  const handleDrop = (e, targetId) => {
+  const handleDrop = async (e, targetId) => {
     e.preventDefault();
     if (draggedId === null || draggedId === targetId) return;
     const newTodos = [...todos];
@@ -102,8 +102,16 @@ export default function App() {
     const toIndex = newTodos.findIndex((t) => t.id === targetId);
     const [moved] = newTodos.splice(fromIndex, 1);
     newTodos.splice(toIndex, 0, moved);
-    setTodos(newTodos);
+    const reordered = newTodos.map((t, index) => ({ ...t, order: index }));
+    setTodos(reordered);
     setDraggedId(null);
+    try {
+      await Promise.all(
+        reordered.map((t) => api.updateTodo(token, { ...t, id: t.id }))
+      );
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const toggleAside = () => {
