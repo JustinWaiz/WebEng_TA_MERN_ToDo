@@ -27,7 +27,10 @@ export default function Nav({ onToggleTheme }) {
             />
           </svg>
         </button>
-        <a href="https://github.com/JustinWaiz/js-todo-app" target="_blank">
+        <a
+          href="https://github.com/JustinWaiz/WebEng_TA_MERN_ToDo"
+          target="_blank"
+        >
           <img src="/img/github.png" alt="Github" className="github-logo" />
         </a>
       </div>
