@@ -1,72 +1,75 @@
-- **LICENSE** – MIT-Lizenz des Projekts.
-- **README.md** – Übersicht, Funktionen und Nutzungshinweise.
-- **PROJECT_STRUCTURE.md** – Dokumentation aller Dateien und Verzeichnisse.
-- **.gitignore** – Git-Regeln zum Ignorieren von node_modules, Env-Dateien und Build-Ausgaben.
-- **project/** – Ergänzende Projektdokumentation.
-  - **CodeExplanation.md** – Erklärung von Legacy-Code und Struktur.
-  - **issues.md** – Bekannte Fehler und deren Status.
-  - **openpoints.md** – Offene Punkte und Entwicklungsnotizen.
-- **backend/** – Express-/MongoDB-API-Server.
-  - **app.js** – Konfiguration von Express und Middleware.
-  - **server.js** – Einstiegspunkt, verbindet sich mit MongoDB und startet den Server.
-  - **package.json** – Abhängigkeiten und Skripte des Backends.
-  - **package-lock.json** – Fixierte Versionen der Abhängigkeiten.
-  - **controllers/** – Routen-Handler.
-    - **authController.js** – Registrierung und Login von Nutzern.
-    - **todoController.js** – CRUD-Operationen für Todos.
-  - **routes/** – Express-Router.
-    - **auth.js** – Endpunkte für Authentifizierung.
-    - **todos.js** – Endpunkte für Todo-CRUD.
-  - **models/** – Mongoose-Schemata.
-    - **User.js** – Schema für Benutzer.
-    - **Todo.js** – Schema für Todo-Einträge.
-  - **middleware/auth.js** – Middleware zur JWT-Verifizierung.
-  - **node_modules/** – Installierte Backend-Abhängigkeiten.
-- **frontend/** – React-Client auf Basis von Vite.
-  - **index.html** – Root-HTML-Dokument.
-  - **styles.css** – Gesamtes Stylesheet, importiert Komponentenstile.
-  - **variables.css** – Theme-Variablen für Light- und Dark-Mode.
-  - **package.json** – Abhängigkeiten und Skripte des Frontends.
-  - **package-lock.json** – Fixierte Versionen der Abhängigkeiten.
-  - **vite.config.js** – Vite-Konfiguration mit API-Proxy.
-  - **public/img/** – Statische Bilder für die UI.
-    - **tasks.png** – Favicon im Browser.
-    - **github.png** – GitHub-Logo für den Repository-Link.
-  - **src/** – React-Quellcode.
-    - **main.jsx** – Einstiegspunkt, rendert die App.
-    - **App.jsx** – Hauptkomponente, verwaltet Todos und Layout.
-    - **context/AuthContext.jsx** – Stellt Authentifizierungszustand und Hilfen bereit.
-    - **services/api.js** – Helferfunktionen für API-Aufrufe.
-    - **components/** – Wiederverwendbare UI-Komponenten.
+# Project Structure
+
+- **LICENSE** – Project MIT license.
+- **README.md** – Overview, features, and usage notes.
+- **PROJECT_STRUCTURE.md** – Documentation of all files and directories.
+- **.gitignore** – Git rules to ignore node_modules, env files, and build outputs.
+- **project/** – Additional project documentation.
+  - **CodeExplanation.md** – Explanation of legacy code and structure.
+  - **issues.md** – Known issues and their status.
+  - **openpoints.md** – Open points and development notes.
+- **backend/** – Express/MongoDB API server.
+  - **app.js** – Configures Express and middleware.
+  - **server.js** – Entry point; connects to MongoDB and starts the server.
+  - **package.json** – Backend dependencies and scripts.
+  - **package-lock.json** – Locked versions of dependencies.
+  - **controllers/** – Route handlers.
+    - **authController.js** – Registers and logs in users.
+    - **todoController.js** – CRUD operations for todos.
+  - **routes/** – Express routers.
+    - **auth.js** – Authentication endpoints.
+    - **todos.js** – Todo CRUD endpoints.
+  - **models/** – Mongoose schemas.
+    - **User.js** – Schema for users.
+    - **Todo.js** – Schema for todo items.
+  - **middleware/auth.js** – Middleware to verify JWTs.
+  - **node_modules/** – Installed backend dependencies.
+- **frontend/** – Vite-based React client.
+  - **index.html** – Root HTML document.
+  - **styles.css** – Global stylesheet importing component styles.
+  - **variables.css** – Theme variables for light and dark modes.
+  - **package.json** – Frontend dependencies and scripts.
+  - **package-lock.json** – Locked versions of dependencies.
+  - **vite.config.js** – Vite configuration with API proxy.
+  - **public/img/** – Static images for the UI.
+    - **tasks.png** – Browser favicon.
+    - **github.png** – GitHub logo for the repository link.
+  - **src/** – React source code.
+    - **main.jsx** – Entry point that renders the app.
+    - **App.jsx** – Main component managing todos and layout.
+    - **context/AuthContext.jsx** – Provides authentication state and helpers.
+    - **services/api.js** – Helper functions for API calls.
+    - **components/** – Reusable UI components.
       - **theme-button/**
-        - **ThemeButton.jsx** – Button zum Umschalten von Light/Dark.
-        - **theme-buttons.css** – Styles für den Theme-Button.
+        - **ThemeButton.jsx** – Toggles light/dark theme.
+        - **theme-buttons.css** – Styles for the theme button.
       - **body/**
-        - **body.css** – Globale Layout-Stile.
+        - **body.css** – Global layout styles.
       - **nav/**
-        - **Nav.jsx** – Navigation mit Theme-Schalter und Logout.
-        - **nav.css** – Stile für die Navigation.
+        - **Nav.jsx** – Navigation with theme switch and logout.
+        - **nav.css** – Styles for the navigation.
       - **action-button/**
-        - **ActionButton.jsx** – Floating Action Button zum Öffnen des Modals.
-        - **action-button.css** – Styling des Action Buttons.
+        - **ActionButton.jsx** – Floating action button to open the modal.
+        - **action-button.css** – Styling for the action button.
       - **todo/**
-        - **TodoCard.jsx** – Darstellung eines einzelnen Todos.
-        - **todo.css** – Stile für Todo-Karten.
+        - **TodoCard.jsx** – Displays a single todo.
+        - **todo.css** – Styles for todo cards.
       - **filter-buttons/**
-        - **filter-buttons.css** – Stile für mobile Filter.
+        - **filter-buttons.css** – Styles for mobile filters.
       - **aside/**
-        - **Aside.jsx** – Seitenleiste mit Filtern und Suche.
-        - **aside.css** – Styling der Seitenleiste.
+        - **Aside.jsx** – Sidebar with filters and search.
+        - **aside.css** – Styling for the sidebar.
       - **toggle-button/**
-        - **ToggleButton.jsx** – Button zum Ein- und Ausklappen der Seitenleiste.
-        - **toggle-button.css** – Stile für den Toggle-Button.
+        - **ToggleButton.jsx** – Collapses and expands the sidebar.
+        - **toggle-button.css** – Styles for the toggle button.
       - **modal/**
-        - **TodoModal.jsx** – Modal zum Erstellen und Bearbeiten von Todos.
-        - **modal.css** – Stile für das Modal.
+        - **TodoModal.jsx** – Modal to create and edit todos.
+        - **modal.css** – Styles for the modal.
       - **auth/**
-        - **Auth.jsx** – Login- und Registrierungsformular.
-        - **auth.css** – Stile für das Auth-Formular.
+        - **Auth.jsx** – Login and registration form.
+        - **auth.css** – Styles for the auth form.
       - **footer/**
-        - **Footer.jsx** – Footer-Komponente.
-        - **footer.css** – Stile für den Footer.
-  - **node_modules/** – Installierte Frontend-Abhängigkeiten.
+        - **Footer.jsx** – Footer component.
+        - **footer.css** – Styles for the footer.
+  - **node_modules/** – Installed frontend dependencies.
+- **.git/** – Version control data.
