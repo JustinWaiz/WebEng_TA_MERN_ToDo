@@ -1,4 +1,4 @@
-# JavaScript To-Do App
+# MERN To-Do App
 
 A full-stack to-do list application with a React frontend and an Express/MongoDB backend. Check out the **[live demo](https://js-todo-app-ry7r.onrender.com/)** 🚀
 
