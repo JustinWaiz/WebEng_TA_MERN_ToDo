@@ -1,3 +1,4 @@
+// Mongoose schema for todo items
 import mongoose from "mongoose";
 
 const todoSchema = new mongoose.Schema({

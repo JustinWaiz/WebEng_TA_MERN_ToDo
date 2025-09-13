@@ -1,3 +1,4 @@
+// Floating action button used to trigger modal opening
 export default function ActionButton({ className = "", onClick }) {
   return (
     <a

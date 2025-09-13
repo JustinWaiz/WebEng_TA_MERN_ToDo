@@ -1,16 +1,21 @@
-import express from 'express'
+// Routes for todo resource operations
+import express from "express";
 import {
   getTodos,
   createTodo,
   updateTodo,
-  deleteTodo
-} from '../controllers/todoController.js'
+  deleteTodo,
+} from "../controllers/todoController.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', getTodos)
-router.post('/', createTodo)
-router.put('/:id', updateTodo)
-router.delete('/:id', deleteTodo)
+// Retrieve all todos
+router.get("/", getTodos);
+// Create a new todo
+router.post("/", createTodo);
+// Update a todo by id
+router.put("/:id", updateTodo);
+// Delete a todo by id
+router.delete("/:id", deleteTodo);
 
-export default router
+export default router;

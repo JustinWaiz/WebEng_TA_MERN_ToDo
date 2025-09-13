@@ -1,3 +1,4 @@
+// Button that toggles the application's theme (light/dark)
 export default function ThemeButton({ onClick }) {
   return (
     <button

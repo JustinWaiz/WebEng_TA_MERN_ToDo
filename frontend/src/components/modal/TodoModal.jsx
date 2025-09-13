@@ -1,49 +1,53 @@
-import React, { useEffect, useState } from 'react'
+// Modal dialog for creating and editing todos
+import React, { useEffect, useState } from "react";
 
 export default function TodoModal({ show, onClose, onSave, todo }) {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [category, setCategory] = useState('work')
-  const [dueDate, setDueDate] = useState('')
-  const [completed, setCompleted] = useState(false)
-  const [icon, setIcon] = useState(null)
-  const [iconPreview, setIconPreview] = useState(null)
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("work");
+  const [dueDate, setDueDate] = useState("");
+  const [completed, setCompleted] = useState(false);
+  const [icon, setIcon] = useState(null);
+  const [iconPreview, setIconPreview] = useState(null);
 
+  // Populate form fields when editing an existing todo
   useEffect(() => {
     if (todo) {
-      setTitle(todo.title || '')
-      setDescription(todo.description || '')
-      setCategory(todo.category || 'work')
-      setDueDate(todo.dueDate || '')
-      setCompleted(todo.completed || false)
-      setIcon(todo.icon || null)
-      setIconPreview(todo.icon || null)
+      setTitle(todo.title || "");
+      setDescription(todo.description || "");
+      setCategory(todo.category || "work");
+      setDueDate(todo.dueDate || "");
+      setCompleted(todo.completed || false);
+      setIcon(todo.icon || null);
+      setIconPreview(todo.icon || null);
     } else {
-      setTitle('')
-      setDescription('')
-      setCategory('work')
-      setDueDate('')
-      setCompleted(false)
-      setIcon(null)
-      setIconPreview(null)
+      setTitle("");
+      setDescription("");
+      setCategory("work");
+      setDueDate("");
+      setCompleted(false);
+      setIcon(null);
+      setIconPreview(null);
     }
-  }, [todo, show])
+  }, [todo, show]);
 
+  // Convert chosen image file to base64 string for storing in DB
   const handleFile = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = () => {
-        setIcon(reader.result)
-        setIconPreview(reader.result)
-      }
-      reader.readAsDataURL(file)
+        setIcon(reader.result);
+        setIconPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
+  // Validate and submit form data to parent component
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!title.trim()) return
+    e.preventDefault();
+    if (!title.trim()) return;
     onSave({
       ...(todo?.id ? { id: todo.id } : {}),
       title,
@@ -52,19 +56,26 @@ export default function TodoModal({ show, onClose, onSave, todo }) {
       dueDate,
       completed,
       icon,
-    })
-  }
+    });
+  };
 
-  if (!show) return null
+  // Don't render anything when modal is hidden
+  if (!show) return null;
 
   return (
     <>
-      <div className="modal fade show" style={{ display: 'block' }}>
+      <div className="modal fade show" style={{ display: "block" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5">{todo ? 'Edit task' : 'New task'}</h1>
-              <button type="button" className="btn-close" onClick={onClose}></button>
+              <h1 className="modal-title fs-5">
+                {todo ? "Edit task" : "New task"}
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={onClose}
+              ></button>
             </div>
             <div className="modal-body">
               <form onSubmit={handleSubmit}>
@@ -121,7 +132,7 @@ export default function TodoModal({ show, onClose, onSave, todo }) {
                       src={iconPreview}
                       alt="preview"
                       className="img-thumbnail mt-2"
-                      style={{ maxWidth: '100px' }}
+                      style={{ maxWidth: "100px" }}
                     />
                   )}
                 </div>
@@ -135,7 +146,11 @@ export default function TodoModal({ show, onClose, onSave, todo }) {
                   <label className="form-check-label">Done</label>
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" onClick={onClose}>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={onClose}
+                  >
                     Cancel
                   </button>
                   <button type="submit" className="btn btn-primary">
@@ -149,5 +164,5 @@ export default function TodoModal({ show, onClose, onSave, todo }) {
       </div>
       <div className="modal-backdrop fade show"></div>
     </>
-  )
+  );
 }

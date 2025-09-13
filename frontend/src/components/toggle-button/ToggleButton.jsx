@@ -1,3 +1,4 @@
+// Button that collapse or expands the sidebar
 export default function ToggleButton({ onClick }) {
   return (
     <button

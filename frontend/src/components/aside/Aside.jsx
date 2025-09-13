@@ -1,3 +1,4 @@
+// Sidebar component with filters, category selection, and search input
 import ActionButton from "../action-button/ActionButton";
 
 export default function Aside({

@@ -1,3 +1,4 @@
+// Authentication form for login and registration
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext.jsx";
 
@@ -7,6 +8,7 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const { login, register } = useAuth();
 
+  // Submit handler performs login or registration based on mode
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

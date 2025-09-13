@@ -1,3 +1,4 @@
+// Top navigation bar with theme toggle and logout
 import ThemeButton from "../theme-button/ThemeButton";
 import { useAuth } from "../../context/AuthContext.jsx";
 

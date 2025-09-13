@@ -1,7 +1,9 @@
+// Controller handling user authentication (registration and login)
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
+// Register a new user and return a JWT token
 export const register = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -16,6 +18,7 @@ export const register = async (req, res) => {
   }
 };
 
+// Validate user credentials and return a short-lived JWT token
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {

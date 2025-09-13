@@ -1,6 +1,14 @@
-import React from 'react'
+// Display a single todo item card with actions
+import React from "react";
 
-export default function TodoCard({ todo, onEdit, onDelete, onDragStart, onDragOver, onDrop }) {
+export default function TodoCard({
+  todo,
+  onEdit,
+  onDelete,
+  onDragStart,
+  onDragOver,
+  onDrop,
+}) {
   return (
     <div
       id={`todo-${todo.id}`}
@@ -18,9 +26,9 @@ export default function TodoCard({ todo, onEdit, onDelete, onDragStart, onDragOv
           )}
           <strong className="todo-title">{todo.title}</strong>
           <br />
-          <span className="todo-due-date">Due: {todo.dueDate || '-'}</span>
+          <span className="todo-due-date">Due: {todo.dueDate || "-"}</span>
         </div>
-        <p className="todo-description">{todo.description || ''}</p>
+        <p className="todo-description">{todo.description || ""}</p>
       </div>
       <div className="todo-meta">
         <label>
@@ -32,10 +40,13 @@ export default function TodoCard({ todo, onEdit, onDelete, onDragStart, onDragOv
         <button className="btn btn-primary edit" onClick={() => onEdit(todo)}>
           <i className="fa-solid fa-edit"></i>
         </button>
-        <button className="btn btn-secondary delete" onClick={() => onDelete(todo)}>
+        <button
+          className="btn btn-secondary delete"
+          onClick={() => onDelete(todo)}
+        >
           <i className="fa-solid fa-trash"></i>
         </button>
       </div>
     </div>
-  )
+  );
 }

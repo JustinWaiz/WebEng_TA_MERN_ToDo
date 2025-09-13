@@ -1,3 +1,4 @@
+// Main application component handling layout and todo interactions
 import { useEffect, useState } from "react";
 import TodoCard from "./components//todo/TodoCard";
 import TodoModal from "./components/modal/TodoModal";
@@ -12,6 +13,7 @@ import * as api from "./services/api.js";
 
 export default function App() {
   const { token } = useAuth();
+  // Local state for various UI features
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
   const [category, setCategory] = useState("all");
@@ -23,15 +25,18 @@ export default function App() {
     () => localStorage.getItem("theme") || "light"
   );
 
+  // Fetch todos when a token becomes available
   useEffect(() => {
     if (token) fetchTodos();
   }, [token]);
 
+  // Apply persisted theme preference
   useEffect(() => {
     document.body.classList.toggle("dark-theme", theme === "dark");
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Load todos from the API
   const fetchTodos = async () => {
     try {
       const data = await api.getTodos(token);
@@ -41,6 +46,7 @@ export default function App() {
     }
   };
 
+  // Apply filtering and searching to the todo list
   const filteredTodos = todos.filter((todo) => {
     if (filter === "active" && todo.completed) return false;
     if (filter === "completed" && !todo.completed) return false;
@@ -56,6 +62,7 @@ export default function App() {
     return true;
   });
 
+  // Save a new or edited todo
   const handleSave = async (todo) => {
     try {
       if (editing) {
@@ -76,11 +83,13 @@ export default function App() {
     setEditing(null);
   };
 
+  // Open modal for editing a todo
   const handleEdit = (todo) => {
     setEditing(todo);
     setShowModal(true);
   };
 
+  // Remove a todo
   const handleDelete = async (todo) => {
     try {
       await api.deleteTodo(token, todo.id);
@@ -90,6 +99,7 @@ export default function App() {
     }
   };
 
+  // Drag and drop reordering handlers
   const handleDragStart = (e, id) => {
     setDraggedId(id);
   };
@@ -114,15 +124,18 @@ export default function App() {
     }
   };
 
+  // Collapse or expand the sidebar
   const toggleAside = () => {
     document.body.classList.toggle("aside-collapsed");
   };
 
+  // Prepare modal for creating a new todo
   const openModal = () => {
     setEditing(null);
     setShowModal(true);
   };
 
+  // Switch between light and dark themes
   const toggleTheme = () => {
     setTheme((t) => (t === "dark" ? "light" : "dark"));
   };
