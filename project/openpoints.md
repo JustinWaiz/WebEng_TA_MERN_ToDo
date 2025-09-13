@@ -10,7 +10,7 @@ Upgrade to MERN stack:
   - reorder CSS files (done)
   - beautify Auth page (done)
   - Logout button (done)
-  - Drag & drop to reorder tasks no longer working (persistance)
+  - Drag & drop to reorder tasks no longer working (done)
   - Use of more clearly icon for toggle button (done)
   - complete tasks without opening modal
 
